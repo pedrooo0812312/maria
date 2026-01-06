@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Maria ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      color: white;
+    }
+    .tela {
+      text-align: center;
+      max-width: 90%;
+    }
+    .inicio {
+      font-size: 1.5em;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+    h1 {
+      font-size: 3em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid white;
+      width: 0;
+      animation: typing 4s steps(30) forwards;
+    }
+    p {
+      font-size: 1.4em;
+      opacity: 0;
+      animation: aparecer 2s forwards;
+      animation-delay: 4.2s;
+    }
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: subir 6s linear infinite;
+    }
+    @keyframes typing { to { width: 100%; } }
+    @keyframes aparecer { to { opacity: 1; } }
+    @keyframes subir {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="tela" id="tela">
+  <div class="inicio" onclick="iniciar()">💕 Clique aqui, Maria 💕</div>
+</div>
+
+<audio id="musica" loop>
+  <source src="photograph.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function iniciar() {
+    document.getElementById("tela").innerHTML = `
+      <h1>Maria ❤️</h1>
+      <p>
+        Se cada momento ao seu lado fosse uma foto,<br>
+        eu guardaria todas no coração.<br><br>
+        Você é meu lugar seguro,<br>
+        meu sorriso fácil,<br>
+        meu amor verdadeiro.<br><br>
+        Eu te amo, hoje e sempre.
+      </p>
+    `;
+    document.getElementById("musica").play();
+  }
+
+  function criarCoracao() {
+    const c = document.createElement("div");
+    c.className = "heart";
+    c.innerHTML = "❤️";
+    c.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6000);
+  }
+
+  setInterval(criarCoracao, 400);
+</script>
+
+</body>
+</html>
